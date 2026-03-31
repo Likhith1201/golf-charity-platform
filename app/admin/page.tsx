@@ -9,10 +9,10 @@ import ExecuteDrawButton from "./ExecuteDrawButton";
 export default async function AdminDashboard() {
   // 1. Secure the page: Only allow the Master Admin email
   const session = await getServerSession(authOptions);
-  const ADMIN_EMAIL = "golfplatform@gmail.com"; // Your master key
+  const ADMIN_EMAIL = "golfplatform@gmail.com"; 
   
   if (!session || session.user?.email !== ADMIN_EMAIL) {
-    redirect("/dashboard"); // Kick normal users back to their dashboard
+    redirect("/dashboard"); 
   }
 
   // 2. Fetch all users and their charity data
@@ -21,28 +21,24 @@ export default async function AdminDashboard() {
   });
 
   // 3. Calculate Platform Financials
-  const activeUsers = allUsers.filter(u => u.subscriptionStatus === "ACTIVE");
+  const activeUsers = allUsers.filter((u: any) => u.subscriptionStatus === "ACTIVE");
   
   let totalRevenue = 0;
   let totalCharityPool = 0;
 
-  activeUsers.forEach(user => {
-    // Determine fee based on plan
+  activeUsers.forEach((user: any) => {
     const fee = user.subscriptionPlan === "YEARLY" ? 100 : 10;
     totalRevenue += fee;
 
-    // Calculate charity contribution (minimum 10% if undefined)
     const percentage = user.charityPercentage ? (user.charityPercentage / 100) : 0.10;
     totalCharityPool += (fee * percentage);
   });
 
-  // Prize pool is 50% of the remaining revenue after charity
   const prizePool = (totalRevenue - totalCharityPool) * 0.5;
   const operatingProfit = (totalRevenue - totalCharityPool) * 0.5;
 
   return (
     <div className="min-h-screen bg-gray-900 pb-12">
-      {/* Dark Admin Navigation Bar */}
       <nav className="bg-black shadow-sm px-6 py-4 flex justify-between items-center border-b border-gray-800">
         <div className="flex items-center gap-6">
           <h1 className="text-xl font-bold tracking-tight text-white">Platform Admin Hub</h1>
@@ -66,7 +62,6 @@ export default async function AdminDashboard() {
           <p className="text-gray-400 mt-2">Real-time breakdown of subscriptions, charity pools, and prizes.</p>
         </div>
 
-        {/* Key Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
             <p className="text-sm text-gray-400 font-medium mb-1">Total Revenue</p>
@@ -93,7 +88,6 @@ export default async function AdminDashboard() {
           </div>
         </div>
 
-        {/* Action Center & Logs */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-2 bg-gray-800 rounded-xl p-6 border border-gray-700">
             <h3 className="text-lg font-bold text-white mb-4">Active Subscriber Log</h3>
@@ -108,7 +102,7 @@ export default async function AdminDashboard() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-700">
-                  {activeUsers.map(user => (
+                  {activeUsers.map((user: any) => (
                     <tr key={user.id}>
                       <td className="py-3 text-white font-medium">{user.name}</td>
                       <td className="py-3 text-gray-300">{user.subscriptionPlan}</td>
@@ -133,12 +127,9 @@ export default async function AdminDashboard() {
                 Execute the monthly draw to assign the ${prizePool.toFixed(2)} prize pool to the highest qualifying scorer.
               </p>
             </div>
-            
             <ExecuteDrawButton />
-            
           </div>
         </div>
-
       </main>
     </div>
   );
