@@ -38,7 +38,7 @@ export async function POST(req: Request) {
 
     // If there are more than 5, delete the older ones
     if (allScores.length > 5) {
-      const scoresToDelete = allScores.slice(5).map(score => score.id);
+      const scoresToDelete = allScores.slice(5).map((score: any) => score.id);
       await prisma.score.deleteMany({
         where: {
           id: { in: scoresToDelete }
