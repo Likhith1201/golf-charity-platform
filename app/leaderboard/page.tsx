@@ -79,7 +79,7 @@ export default async function LeaderboardPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                  {leaderboardData.map((player, index) => (
+                  {leaderboardData.map((player: any, index: number) => (
                     <tr 
                       key={player.id} 
                       className={`hover:bg-gray-50 transition ${player.id === session.user.id ? 'bg-blue-50/50' : ''}`}
