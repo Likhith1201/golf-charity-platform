@@ -68,7 +68,7 @@ export default async function DashboardPage() {
             
             {userProfile.scores.length > 0 ? (
               <div className="space-y-3">
-                {userProfile.scores.map((score, index) => (
+                {userProfile.scores.map((score: any, index: number) => (
                   <div key={score.id} className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
                     <span className="text-sm font-medium text-gray-500">Score #{index + 1}</span>
                     <span className="text-xl font-bold text-black">{score.value} pts</span>
