@@ -41,7 +41,7 @@ export default async function AdminDashboard() {
 
       <main className="max-w-7xl mx-auto mt-8 px-6 space-y-8">
         
-        {/* FINANCIAL METRICS (Existing) */}
+        {/* FINANCIAL METRICS  */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
                 <p className="text-gray-400 text-sm">Total Revenue</p>
@@ -57,7 +57,7 @@ export default async function AdminDashboard() {
             </div>
         </div>
 
-        {/* CHARITY MANAGEMENT (NEW - PRD Requirement #11) */}
+        {/* CHARITY MANAGEMENT  */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-gray-800 p-6 rounded-xl border border-gray-700">
                 <h3 className="text-white font-bold text-lg mb-4">Add New Charity</h3>
