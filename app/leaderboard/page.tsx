@@ -23,10 +23,10 @@ export default async function LeaderboardPage() {
     },
   });
 
-  // 3. Calculate total scores and sort the leaderboard
+ // 3. Calculate total scores and sort the leaderboard
   const leaderboardData = allUsers
-    .map((user) => {
-      const totalScore = user.scores.reduce((sum, score) => sum + score.value, 0);
+    .map((user: any) => {
+      const totalScore = user.scores.reduce((sum: any, score: any) => sum + score.value, 0);
       return {
         id: user.id,
         name: user.name,
@@ -36,10 +36,8 @@ export default async function LeaderboardPage() {
         isActive: user.subscriptionStatus === "ACTIVE",
       };
     })
-    // Only show users who have actually entered at least one score
-    .filter((user) => user.totalScore > 0) 
-    // Sort from highest score to lowest score
-    .sort((a, b) => b.totalScore - a.totalScore);
+    .filter((user: any) => user.totalScore > 0) 
+    .sort((a: any, b: any) => b.totalScore - a.totalScore);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-12">
